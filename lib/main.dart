@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mymess/list.dart';
+import 'package:mymess/madels/chat.dart';
 import 'package:mymess/madels/persons.dart';
 import 'package:mymess/search.dart';
 
@@ -89,7 +90,10 @@ class _HomeState extends State<Home> {
                           child: Align(
                         alignment: Alignment.centerLeft,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => Chat(persons: persons.listPeron[i],)));
+                          },
                           child: Text(
                             '${persons?.listPeron[i].names} ',
                             style: const TextStyle(fontSize: 24),
