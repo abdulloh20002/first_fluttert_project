@@ -3,6 +3,7 @@ import 'package:mymess/list.dart';
 import 'package:mymess/madels/chat.dart';
 import 'package:mymess/madels/persons.dart';
 import 'package:mymess/search.dart';
+import 'package:mymess/widget.dart';
 
 void main() {
   runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: Home()));
@@ -30,17 +31,22 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child:Center(
+          child: Text('sbnfchbs'),
+        ) ,
+      ),
         appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black45,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(
+          //     Icons.menu,
+          //     color: Colors.black45,
+          //   ),
+          //   onPressed: () {
+          //     Scaffold.of(context).openDrawer();
+          //   },
+          //   tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          // ),
           actions: [
             IconButton(
                 onPressed: () {
@@ -65,45 +71,7 @@ class _HomeState extends State<Home> {
                 ),
             itemCount: persons.listPeron.length,
             itemBuilder: (context, i) {
-              return Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      /*   ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                      width: 100,
-                      height: 100,
-                      child: Image.asset('avatar/images/${i + 1}.jpg',fit: BoxFit.cover,)),
-                ),*/
-                      CircleAvatar(
-                        backgroundImage: AssetImage(
-                          persons.listPeron[i].images ?? 'avatar/images/poumolchaniya.jpg',
-                        ),
-                        radius: 50,
-                      ),
-                      const SizedBox(
-                        width: 1,
-                      ),
-                      Expanded(
-                          child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => Chat(persons: persons.listPeron[i],)));
-                          },
-                          child: Text(
-                            '${persons?.listPeron[i].names} ',
-                            style: const TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ))
-                    ],
-                  )
-                ],
-              );
+              return WidgetCol(persons: persons.listPeron[i]);
             }));
   }
 }
